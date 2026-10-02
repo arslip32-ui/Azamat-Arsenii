@@ -1,0 +1,28 @@
+# Secrets & Configuration
+.env
+.env.*
+!.env.example
+secrets/
+*.pem
+
+# Dependencies
+node_modules/
+venv/
+.venv/
+
+# Build & Compiled Outputs
+build/
+dist/
+out/
+bin/
+*.exe
+*.o
+*.obj
+__pycache__/
+
+# IDE & OS Metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log

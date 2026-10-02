@@ -1,0 +1,8 @@
+sentence_id,lang,sentence_text,human_rating,human_scaled,readability_score,error,tree_depth,char_density,avg_syllables,pos_ratio
+ru_001,ru,Быстрая коричневая лиса прыгает через ленивую собаку.,5.0,100.0,65.4,34.599999999999994,3,6.571428571428571,3.142857142857143,0.75
+en_023,en,"Although there are a wide range of fast Fourier transform algorithms, involving a wealth of mathematics from number theory to polynomial algebras, the vast majority of FFT implementations in practice employ some variation on the Cooley–Tukey algorithm.",1.95,23.75,56.1,-32.35,7,5.578947368421052,2.0,0.4761904761904761
+kk_014,kk,Бұл мақалада жасанды интеллекттің заманауи дипломатиядағы рөлі мен оның халықаралық қатынастар жүйесіне әсері қарастырылады.,3.5,62.5,33.0,29.5,7,7.857142857142857,3.571428571428572,0.7333333333333333
+ru_020,ru,Одним из загадочных объектов топологии является лента Мёбиуса - неориентированная поверхность с одной стороной.,2.7,42.50000000000001,68.9,-26.4,5,7.384615384615385,3.3076923076923075,0.5333333333333333
+ru_010,ru,Образование является наиболее мощным оружием для изменения мира.,4.0,75.0,53.1,21.9,4,7.0,3.625,0.7777777777777778
+en_013,en,Present-day climate change includes both global warming—the ongoing increase in global average temperature—and its wider effects on Earth's climate system.,3.5,62.5,41.9,20.6,8,5.652173913043479,2.0434782608695654,0.5714285714285714
+ru_003,ru,"По результатам исследований, возобновляемые источники энергии становятся более эффективными.",3.75,68.75,48.5,20.25,3,9.11111111111111,4.111111111111111,0.7272727272727273

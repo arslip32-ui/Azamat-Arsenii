@@ -1,0 +1,63 @@
+==============================================================================
+READABILITY VALIDATION SUMMARY
+==============================================================================
+Group         n   Pearson r         p  Spearman rho         p      MAE     RMSE       R2  Strength
+--------------------------------------------------------------------------------------------------
+Overall      55       0.765     0.000         0.790     0.000     20.5     23.2   -0.195    Strong
+English      17       0.641     0.006         0.704     0.002     15.2     17.0    0.094  Moderate
+Russian      20       0.791     0.000         0.832     0.000     23.2     26.2   -0.438    Strong
+Kazakh       18       0.897     0.000         0.913     0.000     22.5     24.5   -0.235    Strong
+
+95% confidence intervals (bootstrap, n=2000 resamples):
+  Overall    Pearson r CI: [0.638, 0.859]   Spearman rho CI: [0.651, 0.883]
+  English    Pearson r CI: [0.415, 0.824]   Spearman rho CI: [0.392, 0.904]
+  Russian    Pearson r CI: [0.611, 0.914]   Spearman rho CI: [0.649, 0.930]
+  Kazakh     Pearson r CI: [0.807, 0.958]   Spearman rho CI: [0.717, 0.980]
+
+Outlier report: 27 sentence(s) with |error| > 20 points -> results\outliers.csv
+
+Saved figures:
+  results\fig1_scatter_by_language.png
+  results\fig2_distribution_comparison.png
+  results\fig3_residual_plot.png
+
+==============================================================================
+PER-LANGUAGE INSIGHTS
+==============================================================================
+
+-- English (n=17) --
+  Recommendation: Moderate alignment -- minor tuning may improve results. Algorithm shows a systematic bias: it consistently under-rates (predicts harder than humans judge) (mean error = 10.1 points).
+  Largest mismatches:
+    id=en_004  error=+30.5  human=88  auto=57.0  "Language is the normal way humans communicate."
+    id=en_001  error=+28.2  human=75  auto=46.8  "Different dog breeds have different lifespans."
+    id=en_012  error=+22.2  human=69  auto=46.5  "The scientific method relies on observation, hypothesis, ..."
+  Feature ranges (mean +/- std):
+    tree_depth: 6.18 +/- 1.76
+    char_density: 5.44 +/- 1.23
+    avg_syllables: 1.96 +/- 0.46
+    pos_ratio: 0.55 +/- 0.13
+
+-- Russian (n=20) --
+  Recommendation: Strong alignment -- no tuning needed. Algorithm shows a systematic bias: it consistently under-rates (predicts harder than humans judge) (mean error = 22.4 points).
+  Largest mismatches:
+    id=ru_001  error=+52.4  human=100  auto=47.6  "Быстрая коричневая лиса прыгает через ленивую собаку."
+    id=ru_003  error=+40.2  human=69  auto=28.5  "По результатам исследований, возобновляемые источники эне..."
+    id=ru_010  error=+39.1  human=75  auto=35.9  "Образование является наиболее мощным оружием для изменени..."
+  Feature ranges (mean +/- std):
+    tree_depth: 4.85 +/- 2.29
+    char_density: 6.35 +/- 1.49
+    avg_syllables: 2.89 +/- 0.70
+    pos_ratio: 0.61 +/- 0.10
+
+-- Kazakh (n=18) --
+  Recommendation: Strong alignment -- no tuning needed. Algorithm shows a systematic bias: it consistently under-rates (predicts harder than humans judge) (mean error = 22.5 points).
+  Largest mismatches:
+    id=kk_014  error=+43.0  human=62  auto=19.5  "Бұл мақалада жасанды интеллекттің заманауи дипломатиядағы..."
+    id=kk_008  error=+38.9  human=100  auto=61.1  "Мен салатты шанышқымен жеймін."
+    id=kk_015  error=+32.6  human=55  auto=22.4  "Жасанды интеллекттің деректерді өңдеу, алдын ала болжау, ..."
+  Feature ranges (mean +/- std):
+    tree_depth: 4.78 +/- 1.81
+    char_density: 6.69 +/- 1.15
+    avg_syllables: 2.86 +/- 0.49
+    pos_ratio: 0.65 +/- 0.15
+

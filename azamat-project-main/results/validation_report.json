@@ -1,0 +1,235 @@
+{
+  "match_summary": {
+    "total_annotation_rows": 55,
+    "unmatched_rows": 0,
+    "unmatched_pct": 0.0,
+    "rows_dropped_for_nan_inf": 0
+  },
+  "metrics": {
+    "overall": {
+      "n": 55,
+      "pearson_r": 0.7651329360715898,
+      "pearson_p": 1.0350845485196362e-11,
+      "pearson_ci": [
+        0.6380221088363339,
+        0.8594135840037153
+      ],
+      "pearson_significant": true,
+      "spearman_rho": 0.7901656366895057,
+      "spearman_p": 7.358748293518564e-13,
+      "spearman_ci": [
+        0.6506815393760994,
+        0.8834586587351916
+      ],
+      "spearman_significant": true,
+      "mae": 20.47272727272727,
+      "rmse": 23.163081911446145,
+      "r2": -0.19517166342958636,
+      "mean_error": 18.64181818181818,
+      "strength": "Strong"
+    },
+    "en": {
+      "n": 17,
+      "pearson_r": 0.6411835091831802,
+      "pearson_p": 0.00553956195737142,
+      "pearson_ci": [
+        0.41511723315831556,
+        0.8240486204889309
+      ],
+      "pearson_significant": true,
+      "spearman_rho": 0.7037957799588486,
+      "spearman_p": 0.0016163881276097707,
+      "spearman_ci": [
+        0.3917501056853569,
+        0.9041960937493018
+      ],
+      "spearman_significant": true,
+      "mae": 15.164705882352942,
+      "rmse": 17.036112163491378,
+      "r2": 0.09423990821044093,
+      "mean_error": 10.076470588235296,
+      "strength": "Moderate"
+    },
+    "ru": {
+      "n": 20,
+      "pearson_r": 0.7907066844686395,
+      "pearson_p": 3.326898281368004e-05,
+      "pearson_ci": [
+        0.6112765231394178,
+        0.9137793207765145
+      ],
+      "pearson_significant": true,
+      "spearman_rho": 0.8323163659625109,
+      "spearman_p": 5.323700067410679e-06,
+      "spearman_ci": [
+        0.649066857261943,
+        0.9301584113172021
+      ],
+      "spearman_significant": true,
+      "mae": 23.152499999999996,
+      "rmse": 26.213367296095328,
+      "r2": -0.4379674816685877,
+      "mean_error": 22.4425,
+      "strength": "Strong"
+    },
+    "kk": {
+      "n": 18,
+      "pearson_r": 0.8970828857442522,
+      "pearson_p": 4.5621407237775095e-07,
+      "pearson_ci": [
+        0.8066643091381899,
+        0.9578369195855791
+      ],
+      "pearson_significant": true,
+      "spearman_rho": 0.913052537096849,
+      "spearman_p": 1.2467285350098996e-07,
+      "spearman_ci": [
+        0.7168187277170969,
+        0.9803563878235515
+      ],
+      "spearman_significant": true,
+      "mae": 22.508333333333333,
+      "rmse": 24.531558472936673,
+      "r2": -0.2348348041204471,
+      "mean_error": 22.508333333333333,
+      "strength": "Strong"
+    }
+  },
+  "insights": {
+    "en": {
+      "n": 17,
+      "recommendation": "Moderate alignment -- minor tuning may improve results. Algorithm shows a systematic bias: it consistently under-rates (predicts harder than humans judge) (mean error = 10.1 points).",
+      "top_errors": [
+        {
+          "sentence_id": "en_004",
+          "sentence_text": "Language is the normal way humans communicate.",
+          "human_scaled": 87.5,
+          "readability_score": 57.0,
+          "error": 30.5
+        },
+        {
+          "sentence_id": "en_001",
+          "sentence_text": "Different dog breeds have different lifespans.",
+          "human_scaled": 75.0,
+          "readability_score": 46.8,
+          "error": 28.200000000000003
+        },
+        {
+          "sentence_id": "en_012",
+          "sentence_text": "The scientific method relies on observation, hypothesis, experiment, and analysis.",
+          "human_scaled": 68.75,
+          "readability_score": 46.5,
+          "error": 22.25
+        }
+      ],
+      "feature_ranges": {
+        "tree_depth": {
+          "mean": 6.176470588235294,
+          "std": 1.7568452380080093
+        },
+        "char_density": {
+          "mean": 5.440667478453574,
+          "std": 1.2342404795217654
+        },
+        "avg_syllables": {
+          "mean": 1.964718815247476,
+          "std": 0.45679274537312853
+        },
+        "pos_ratio": {
+          "mean": 0.554840493669744,
+          "std": 0.125786471826839
+        }
+      }
+    },
+    "ru": {
+      "n": 20,
+      "recommendation": "Strong alignment -- no tuning needed. Algorithm shows a systematic bias: it consistently under-rates (predicts harder than humans judge) (mean error = 22.4 points).",
+      "top_errors": [
+        {
+          "sentence_id": "ru_001",
+          "sentence_text": "Быстрая коричневая лиса прыгает через ленивую собаку.",
+          "human_scaled": 100.0,
+          "readability_score": 47.6,
+          "error": 52.4
+        },
+        {
+          "sentence_id": "ru_003",
+          "sentence_text": "По результатам исследований, возобновляемые источники энергии становятся более эффективными.",
+          "human_scaled": 68.75,
+          "readability_score": 28.5,
+          "error": 40.25
+        },
+        {
+          "sentence_id": "ru_010",
+          "sentence_text": "Образование является наиболее мощным оружием для изменения мира.",
+          "human_scaled": 75.0,
+          "readability_score": 35.9,
+          "error": 39.1
+        }
+      ],
+      "feature_ranges": {
+        "tree_depth": {
+          "mean": 4.85,
+          "std": 2.286372673034735
+        },
+        "char_density": {
+          "mean": 6.348840270926184,
+          "std": 1.4865876194550514
+        },
+        "avg_syllables": {
+          "mean": 2.886650709541576,
+          "std": 0.6952512907619406
+        },
+        "pos_ratio": {
+          "mean": 0.6086522837066315,
+          "std": 0.10055189935819873
+        }
+      }
+    },
+    "kk": {
+      "n": 18,
+      "recommendation": "Strong alignment -- no tuning needed. Algorithm shows a systematic bias: it consistently under-rates (predicts harder than humans judge) (mean error = 22.5 points).",
+      "top_errors": [
+        {
+          "sentence_id": "kk_014",
+          "sentence_text": "Бұл мақалада жасанды интеллекттің заманауи дипломатиядағы рөлі мен оның халықаралық қатынастар жүйесіне әсері қарастырылады.",
+          "human_scaled": 62.5,
+          "readability_score": 19.5,
+          "error": 43.0
+        },
+        {
+          "sentence_id": "kk_008",
+          "sentence_text": "Мен салатты шанышқымен жеймін.",
+          "human_scaled": 100.0,
+          "readability_score": 61.1,
+          "error": 38.9
+        },
+        {
+          "sentence_id": "kk_015",
+          "sentence_text": "Жасанды интеллекттің деректерді өңдеу, алдын ала болжау, киберқауіпсіздік, коммуникация және шешім қабылдау процестерін қолдау сияқты негізгі бағыттары сипатталады.",
+          "human_scaled": 55.00000000000001,
+          "readability_score": 22.4,
+          "error": 32.60000000000001
+        }
+      ],
+      "feature_ranges": {
+        "tree_depth": {
+          "mean": 4.777777777777778,
+          "std": 1.8121673811444545
+        },
+        "char_density": {
+          "mean": 6.691506656426011,
+          "std": 1.1496597726779616
+        },
+        "avg_syllables": {
+          "mean": 2.857125433805541,
+          "std": 0.48812997520877194
+        },
+        "pos_ratio": {
+          "mean": 0.6547483380816714,
+          "std": 0.1541500948737493
+        }
+      }
+    }
+  }
+}

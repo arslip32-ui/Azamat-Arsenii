@@ -1,0 +1,4 @@
+# Python 3.10+. Add these to the existing project environment.
+# Keep its existing spaCy, Stanza, features and NLP-model dependencies.
+streamlit==1.64.0
+groq==0.37.1

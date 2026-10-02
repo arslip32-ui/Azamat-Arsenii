@@ -1,0 +1,63 @@
+==============================================================================
+READABILITY VALIDATION SUMMARY
+==============================================================================
+Group         n   Pearson r         p  Spearman rho         p      MAE     RMSE       R2  Strength
+--------------------------------------------------------------------------------------------------
+Overall      61       0.833     0.000         0.848     0.000      9.8     12.8    0.682    Strong
+English      23       0.800     0.000         0.837     0.000     10.5     12.6    0.640    Strong
+Russian      20       0.781     0.000         0.770     0.000     10.3     14.6    0.556    Strong
+Kazakh       18       0.883     0.000         0.909     0.000      8.3     11.0    0.752    Strong
+
+95% confidence intervals (bootstrap, n=2000 resamples):
+  Overall    Pearson r CI: [0.749, 0.895]   Spearman rho CI: [0.747, 0.908]
+  English    Pearson r CI: [0.638, 0.905]   Spearman rho CI: [0.633, 0.920]
+  Russian    Pearson r CI: [0.576, 0.916]   Spearman rho CI: [0.477, 0.926]
+  Kazakh     Pearson r CI: [0.768, 0.958]   Spearman rho CI: [0.695, 0.983]
+
+Outlier report: 7 sentence(s) with |error| > 20 points -> results_final\outliers.csv
+
+Saved figures:
+  results_final\fig1_scatter_by_language.png
+  results_final\fig2_distribution_comparison.png
+  results_final\fig3_residual_plot.png
+
+==============================================================================
+PER-LANGUAGE INSIGHTS
+==============================================================================
+
+-- English (n=23) --
+  Recommendation: Strong alignment -- no tuning needed.
+  Largest mismatches:
+    id=en_023  error=-32.4  human=24  auto=56.1  "Although there are a wide range of fast Fourier transform..."
+    id=en_013  error=+20.6  human=62  auto=41.9  "Present-day climate change includes both global warming—t..."
+    id=en_021  error=-17.4  human=16  auto=33.6  "In particular, deep learning has been used to model how c..."
+  Feature ranges (mean +/- std):
+    tree_depth: 6.83 +/- 2.14
+    char_density: 5.51 +/- 1.08
+    avg_syllables: 1.99 +/- 0.41
+    pos_ratio: 0.55 +/- 0.11
+
+-- Russian (n=20) --
+  Recommendation: Strong alignment -- no tuning needed.
+  Largest mismatches:
+    id=ru_001  error=+34.6  human=100  auto=65.4  "Быстрая коричневая лиса прыгает через ленивую собаку."
+    id=ru_020  error=-26.4  human=43  auto=68.9  "Одним из загадочных объектов топологии является лента Мёб..."
+    id=ru_010  error=+21.9  human=75  auto=53.1  "Образование является наиболее мощным оружием для изменени..."
+  Feature ranges (mean +/- std):
+    tree_depth: 4.85 +/- 2.29
+    char_density: 6.35 +/- 1.49
+    avg_syllables: 2.89 +/- 0.70
+    pos_ratio: 0.61 +/- 0.10
+
+-- Kazakh (n=18) --
+  Recommendation: Strong alignment -- no tuning needed.
+  Largest mismatches:
+    id=kk_014  error=+29.5  human=62  auto=33.0  "Бұл мақалада жасанды интеллекттің заманауи дипломатиядағы..."
+    id=kk_015  error=+18.2  human=55  auto=36.8  "Жасанды интеллекттің деректерді өңдеу, алдын ала болжау, ..."
+    id=kk_008  error=+14.3  human=100  auto=85.7  "Мен салатты шанышқымен жеймін."
+  Feature ranges (mean +/- std):
+    tree_depth: 4.78 +/- 1.81
+    char_density: 6.69 +/- 1.15
+    avg_syllables: 2.86 +/- 0.49
+    pos_ratio: 0.65 +/- 0.15
+

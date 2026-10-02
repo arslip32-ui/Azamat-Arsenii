@@ -1,0 +1,43 @@
+import pandas as pd
+import numpy as np
+from src.normalize import REFERENCE_RANGES, _SCORE_FEATURE_KEYS
+
+# Load your feature data
+df = pd.read_csv('data/processed/readability_scores.csv')
+
+print("Checking normalized feature ranges per language...\n")
+
+all_pass = True
+
+for lang in ['en', 'ru', 'kk']:
+    ranges = REFERENCE_RANGES[lang]
+    lang_data = df[df['lang'] == lang]
+    
+    print(f"{lang.upper()}:")
+    
+    for key in _SCORE_FEATURE_KEYS:
+        if key in lang_data.columns:
+            min_val, max_val = ranges[key]
+            raw_values = lang_data[key].values
+            
+            # Normalize to [0, 1]
+            clamped = np.clip(raw_values, min_val, max_val)
+            normalized = (clamped - min_val) / (max_val - min_val)
+            
+            norm_min = np.min(normalized)
+            norm_max = np.max(normalized)
+            
+            status = "✅" if (norm_min >= 0 and norm_max <= 1) else "⚠️"
+            
+            print(f"  {key:15} | Range: [{min_val:5.2f}, {max_val:5.2f}] | Normalized: [{norm_min:.3f}, {norm_max:.3f}] {status}")
+            
+            if norm_min < 0 or norm_max > 1:
+                all_pass = False
+                print(f"                  WARNING: VALUES EXCEED [0, 1]")
+    
+    print()
+
+if all_pass:
+    print("✅ ALL CHECKS PASSED - Normalized ranges are valid")
+else:
+    print("⚠️  SOME FEATURES EXCEED [0, 1] - REFERENCE_RANGES need adjustment")

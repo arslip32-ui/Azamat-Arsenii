@@ -1,0 +1,62 @@
+lang,sentence,readability_score,interpretation,tree_depth,char_density,avg_syllables,pos_ratio,token_count
+en,Different dog breeds have different lifespans.,72.3,Moderate,3,6.666666666666667,2.1666666666666665,0.8571428571428571,7
+en,Science is what we do to find out about the natural world.,88.9,Easy,5,3.8333333333333335,1.3333333333333333,0.38461538461538464,13
+en,The Internet is the world's largest global communication network for computers and other devices.,60.9,Moderate,6,5.785714285714286,2.0,0.5625,16
+en,Language is the normal way humans communicate.,77.2,Easy,4,5.571428571428571,2.142857142857143,0.625,8
+en,"A family is a group of people who, in most cases, live together.",76.9,Easy,6,3.769230769230769,1.5384615384615385,0.4375,16
+en,The quick brown fox jumps over the lazy dog.,89.8,Easy,4,3.888888888888889,1.2222222222222223,0.6,10
+en,Education is the most powerful weapon which you can use to change the world.,72.8,Moderate,6,4.428571428571429,1.5714285714285714,0.4666666666666667,15
+en,Climate change significantly affects ecosystems and human societies worldwide.,59.3,Difficult,4,7.666666666666667,2.7777777777777777,0.8,10
+en,The term country refers to a political entity or its territory in the world.,62.6,Moderate,7,4.428571428571429,1.7142857142857142,0.4666666666666667,15
+en,"Culture is a word for the 'way of life' of groups of people, meaning the way they do things.",59.8,Difficult,8,3.6842105263157894,1.263157894736842,0.43478260869565216,23
+en,"According to recent studies, renewable energy sources are becoming more efficient.",60.0,Difficult,5,6.363636363636363,2.4545454545454546,0.6923076923076923,13
+en,"The scientific method relies on observation, hypothesis, experiment, and analysis.",56.2,Difficult,6,6.9,2.6,0.5,14
+en,Present-day climate change includes both global warming—the ongoing increase in global average temperature—and its wider effects on Earth's climate system.,41.9,Difficult,8,5.6521739130434785,2.0434782608695654,0.5714285714285714,28
+en,Machine learning addresses the question of how to build computers that improve automatically through experience.,38.2,Very Difficult,8,6.466666666666667,2.2,0.5625,16
+en,"Quantum computing promises to be the next disruptive technology, with numerous possible applications and implications for organizations and markets.",38.0,Very Difficult,8,6.7368421052631575,2.3684210526315788,0.5238095238095238,21
+en,"Our object of study is the theory of definable graphs, usually Borel or analytic graphs on Polish spaces.",42.3,Difficult,9,4.777777777777778,1.7777777777777777,0.5,20
+en,"We investigate how combinatorial concepts, such as colorings and matchings, behave under definability constraints, i.e., when they are required to be definable or well-behaved in the topological or measure theoretic sense.",45.6,Difficult,8,5.870967741935484,2.225806451612903,0.4473684210526316,38
+en,"Advances in neuroscience, alongside huge leaps in computer processing power over the last few decades, have given rise to a new generation of in silico neural networks inspired by the architecture of the brain.",39.4,Very Difficult,11,5.117647058823529,1.9705882352941178,0.5135135135135135,37
+en,"These AI systems are now capable of many of the advanced perceptual and cognitive abilities of biological systems, including object recognition and decision making.",32.6,Very Difficult,10,5.791666666666667,2.2083333333333335,0.5769230769230769,26
+en,"Moreover, AI is now increasingly being employed as a tool for neuroscience research and is transforming our understanding of brain functions.",66.4,Moderate,6,5.666666666666667,1.7619047619047619,0.4782608695652174,23
+en,"In particular, deep learning has been used to model how convolutional layers and recurrent connections in the brain’s cerebral cortex control important functions, including visual processing, memory, and motor control.",33.6,Very Difficult,11,6.066666666666666,2.0,0.5555555555555556,36
+en,Methods of computer algebra become more familiar to a wide audience of theoretical mathematicians and physicists.,44.6,Difficult,7,6.0625,2.375,0.6470588235294118,17
+en,"Although there are a wide range of fast Fourier transform algorithms, involving a wealth of mathematics from number theory to polynomial algebras, the vast majority of FFT implementations in practice employ some variation on the Cooley–Tukey algorithm.",56.1,Difficult,7,5.578947368421052,2.0,0.47619047619047616,42
+ru,Быстрая коричневая лиса прыгает через ленивую собаку.,65.4,Moderate,3,6.571428571428571,3.142857142857143,0.75,8
+ru,Изменение климата существенно влияет на экосистемы и общество.,67.6,Moderate,4,6.75,3.125,0.6666666666666666,9
+ru,"По результатам исследований, возобновляемые источники энергии становятся более эффективными.",48.5,Difficult,3,9.11111111111111,4.111111111111111,0.7272727272727273,11
+ru,"Научный метод опирается на наблюдение, гипотезу, эксперимент и анализ.",75.3,Easy,4,6.555555555555555,3.111111111111111,0.5833333333333334,12
+ru,Семья Антона живёт в селе.,100.0,Very Easy,3,4.2,2.0,0.5,6
+ru,Мама и папа работают на ферме.,100.0,Very Easy,4,4.0,2.0,0.5714285714285714,7
+ru,После уроков мальчик приходит на ферму.,96.1,Very Easy,3,5.5,2.1666666666666665,0.5714285714285714,7
+ru,У меня живут разные животные.,100.0,Very Easy,3,4.8,2.4,0.5,6
+ru,Ержан дает им корм и воду.,100.0,Very Easy,4,3.3333333333333335,1.5,0.42857142857142855,7
+ru,Образование является наиболее мощным оружием для изменения мира.,53.1,Difficult,4,7.0,3.625,0.7777777777777778,9
+ru,Климат влияет на жизнь всех людей на Земле.,100.0,Very Easy,5,4.375,1.625,0.4444444444444444,9
+ru,Интернет соединяет миллионы компьютеров по всему миру.,75.9,Easy,3,6.714285714285714,3.0,0.625,8
+ru,Математика помогает нам понимать окружающий мир.,62.0,Moderate,4,7.0,3.1666666666666665,0.7142857142857143,7
+ru,Наука основана на наблюдении и экспериментах.,76.0,Easy,4,6.5,3.1666666666666665,0.5714285714285714,7
+ru,"Чтобы сделать выводы об особенностях климата, необходимы многолетние ряды наблюдений за погодой.",66.3,Moderate,5,6.916666666666667,3.0,0.6428571428571429,14
+ru,"Важнейшим элементом климата, влияющим на остальные его характеристики, в первую очередь на температуру, является лучистая энергия Солнца.",63.1,Moderate,7,6.882352941176471,3.176470588235294,0.5714285714285714,21
+ru,Дисциплина “Искусственный интеллект” играет фундаментальную роль в подготовке специалистов в области информатики и вычислительной техники.,44.4,Difficult,8,8.066666666666666,3.2666666666666666,0.6666666666666666,18
+ru,"Кроме того, делается вывод о том, насколько важно в процессе усвоения учитывать специфику профессиональной терминологии - абстрактных и конкретных понятий.",54.9,Difficult,11,6.947368421052632,2.9473684210526314,0.5652173913043478,23
+ru,"Иностранные исследователи пытаются создать единую методологию нейрообразования и доказать эффективность методов обучения, основанных на знаниях о функционировании головного мозга.",21.3,Very Difficult,10,8.368421052631579,3.8947368421052633,0.7619047619047619,21
+ru,Одним из загадочных объектов топологии является лента Мёбиуса - неориентированная поверхность с одной стороной.,68.9,Moderate,5,7.384615384615385,3.3076923076923075,0.5333333333333333,15
+kk,Жылдам қоңыр түлкі жалқау итті секіре өтетін.,81.2,Easy,4,5.428571428571429,2.2857142857142856,0.875,8
+kk,Білім - дүниені өзгерту үшін ең күшті қару.,88.9,Easy,5,4.857142857142857,2.2857142857142856,0.6666666666666666,9
+kk,Климаттың өзгеруі экожүйелер мен қоғамға айтарлықтай әсер етеді.,58.1,Difficult,4,7.0,3.125,0.7777777777777778,9
+kk,"Зерттеулердің нәтижелеріне сәйкес, жаңартылатын энергия көздері тез тиімді болып келеді.",59.6,Difficult,4,7.7,3.3,0.5833333333333334,12
+kk,"Ғылыми әдіс бақылау, гипотеза, эксперимент және талдауға негізделеді.",60.3,Moderate,4,7.375,3.25,0.6363636363636364,11
+kk,Мен тамақ ішемін.,100.0,Very Easy,2,4.666666666666667,2.0,0.5,4
+kk,"Мен сорпа, салат аламын.",100.0,Very Easy,3,4.75,2.0,0.3333333333333333,6
+kk,Мен салатты шанышқымен жеймін.,85.7,Easy,3,6.5,2.5,0.6,5
+kk,Маған салат ұнайды.,100.0,Very Easy,2,5.333333333333333,2.3333333333333335,0.5,4
+kk,"Кездесуде Президент Қасым-Жомарт Тоқаев елдің қорғаныс қабілетін нығайту, Қарулы Күштердің жауынгерлік дайындығын күшейту және әскери басқару жүйесін жетілдіру бойынша нақты тапсырмалар берді.",51.6,Difficult,5,7.476190476190476,3.0952380952380953,0.75,24
+kk,"Жылы мезгілде трекинг, жаяу туризм, тау велосипеді, альпинизм және экологиялық туризм сияқты бағыттарды дамытуға мүмкіндік бар.",54.8,Difficult,7,6.75,2.8125,0.7,20
+kk,Бірер күннен кейін Алматыда «Қазақстан - Қытай» инвестициялық форумы өтеді.,78.8,Easy,5,6.888888888888889,3.0,0.3076923076923077,13
+kk,Жұлдыздың жалпы сапасы оның өзгерісі мен кейінгі тағдырының маңызды көрсеткіші.,65.0,Moderate,4,6.9,2.9,0.7272727272727273,11
+kk,Бұл мақалада жасанды интеллекттің заманауи дипломатиядағы рөлі мен оның халықаралық қатынастар жүйесіне әсері қарастырылады.,33.0,Very Difficult,7,7.857142857142857,3.5714285714285716,0.7333333333333333,15
+kk,"Жасанды интеллекттің деректерді өңдеу, алдын ала болжау, киберқауіпсіздік, коммуникация және шешім қабылдау процестерін қолдау сияқты негізгі бағыттары сипатталады.",36.8,Very Difficult,7,7.944444444444445,3.2777777777777777,0.7272727272727273,22
+kk,"Мақалада қазақ тілінің цифрлық корпусы мен жасанды интеллект технологияларының өзара байланысы, қазіргі жағдайы және болашақ даму бағыттары кешенді түрде қарастырылады.",42.7,Difficult,6,7.35,3.2,0.8181818181818182,22
+kk,"Цифрлық дәуірде тілдің сақталуы мен дамуы үшін корпусқа негізделген лингвистикалық зерттеулердің маңызы ерекше артып отыр, себебі жасанды интеллект жүйелерін оқытудың негізгі базасы ретінде сапалы және көлемді цифрлық ресурстар қажет екендігі дәлелденген.",44.6,Difficult,9,7.193548387096774,2.967741935483871,0.7575757575757576,33
+kk,"Соның ішінде жасанды интеллект платформалары оқушылардың жазылым əрекетін жетілдіруге, грамматикалық сауаттылығын арттыруға, сөздік қорын байытуға жəне шығармашылық қабілетін дамытуға мүмкіндік береді.",38.3,Very Difficult,5,8.476190476190476,3.5238095238095237,0.7916666666666666,24

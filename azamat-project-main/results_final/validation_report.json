@@ -1,0 +1,235 @@
+{
+  "match_summary": {
+    "total_annotation_rows": 61,
+    "unmatched_rows": 0,
+    "unmatched_pct": 0.0,
+    "rows_dropped_for_nan_inf": 0
+  },
+  "metrics": {
+    "overall": {
+      "n": 61,
+      "pearson_r": 0.8334721941568407,
+      "pearson_p": 7.783200001195512e-17,
+      "pearson_ci": [
+        0.7490583844612906,
+        0.8951685788945529
+      ],
+      "pearson_significant": true,
+      "spearman_rho": 0.8475318444072865,
+      "spearman_p": 7.112375540680198e-18,
+      "spearman_ci": [
+        0.7469333109605196,
+        0.9081266161577675
+      ],
+      "spearman_significant": true,
+      "mae": 9.778688524590166,
+      "rmse": 12.841074593713389,
+      "r2": 0.6821227895380182,
+      "mean_error": 1.4573770491803277,
+      "strength": "Strong"
+    },
+    "en": {
+      "n": 23,
+      "pearson_r": 0.8000246998690731,
+      "pearson_p": 4.604150465656478e-06,
+      "pearson_ci": [
+        0.6375207611605087,
+        0.9050617860665594
+      ],
+      "pearson_significant": true,
+      "spearman_rho": 0.8370459267468017,
+      "spearman_p": 6.384184308776363e-07,
+      "spearman_ci": [
+        0.6331181576148641,
+        0.9201749264151271
+      ],
+      "spearman_significant": true,
+      "mae": 10.482608695652175,
+      "rmse": 12.578933389496555,
+      "r2": 0.6400335868834834,
+      "mean_error": -0.017391304347825872,
+      "strength": "Strong"
+    },
+    "ru": {
+      "n": 20,
+      "pearson_r": 0.7812327022900689,
+      "pearson_p": 4.773480795750627e-05,
+      "pearson_ci": [
+        0.5756599439157875,
+        0.916380446321408
+      ],
+      "pearson_significant": true,
+      "spearman_rho": 0.7697266703531866,
+      "spearman_p": 7.233707866535755e-05,
+      "spearman_ci": [
+        0.47655618646475695,
+        0.926303915241482
+      ],
+      "spearman_significant": true,
+      "mae": 10.2575,
+      "rmse": 14.561116887107252,
+      "r2": 0.5562965397160164,
+      "mean_error": 2.247499999999999,
+      "strength": "Strong"
+    },
+    "kk": {
+      "n": 18,
+      "pearson_r": 0.883280846828984,
+      "pearson_p": 1.1936593861748216e-06,
+      "pearson_ci": [
+        0.7677075292985152,
+        0.9578077382169622
+      ],
+      "pearson_significant": true,
+      "spearman_rho": 0.908732423965097,
+      "spearman_p": 1.8121362069202163e-07,
+      "spearman_ci": [
+        0.694797794461652,
+        0.9831040726065196
+      ],
+      "spearman_significant": true,
+      "mae": 8.347222222222221,
+      "rmse": 11.001723349851455,
+      "r2": 0.7516409313555715,
+      "mean_error": 2.463888888888889,
+      "strength": "Strong"
+    }
+  },
+  "insights": {
+    "en": {
+      "n": 23,
+      "recommendation": "Strong alignment -- no tuning needed.",
+      "top_errors": [
+        {
+          "sentence_id": "en_023",
+          "sentence_text": "Although there are a wide range of fast Fourier transform algorithms, involving a wealth of mathematics from number theory to polynomial algebras, the vast majority of FFT implementations in practice employ some variation on the Cooley–Tukey algorithm.",
+          "human_scaled": 23.75,
+          "readability_score": 56.1,
+          "error": -32.35
+        },
+        {
+          "sentence_id": "en_013",
+          "sentence_text": "Present-day climate change includes both global warming—the ongoing increase in global average temperature—and its wider effects on Earth's climate system.",
+          "human_scaled": 62.5,
+          "readability_score": 41.9,
+          "error": 20.6
+        },
+        {
+          "sentence_id": "en_021",
+          "sentence_text": "In particular, deep learning has been used to model how convolutional layers and recurrent connections in the brain’s cerebral cortex control important functions, including visual processing, memory, and motor control.",
+          "human_scaled": 16.249999999999996,
+          "readability_score": 33.6,
+          "error": -17.350000000000005
+        }
+      ],
+      "feature_ranges": {
+        "tree_depth": {
+          "mean": 6.826086956521739,
+          "std": 2.139731269454658
+        },
+        "char_density": {
+          "mean": 5.511975720041536,
+          "std": 1.0805852055970977
+        },
+        "avg_syllables": {
+          "mean": 1.9876541821625784,
+          "std": 0.4068142879294127
+        },
+        "pos_ratio": {
+          "mean": 0.5512952481592565,
+          "std": 0.11256679067041078
+        }
+      }
+    },
+    "ru": {
+      "n": 20,
+      "recommendation": "Strong alignment -- no tuning needed.",
+      "top_errors": [
+        {
+          "sentence_id": "ru_001",
+          "sentence_text": "Быстрая коричневая лиса прыгает через ленивую собаку.",
+          "human_scaled": 100.0,
+          "readability_score": 65.4,
+          "error": 34.599999999999994
+        },
+        {
+          "sentence_id": "ru_020",
+          "sentence_text": "Одним из загадочных объектов топологии является лента Мёбиуса - неориентированная поверхность с одной стороной.",
+          "human_scaled": 42.50000000000001,
+          "readability_score": 68.9,
+          "error": -26.4
+        },
+        {
+          "sentence_id": "ru_010",
+          "sentence_text": "Образование является наиболее мощным оружием для изменения мира.",
+          "human_scaled": 75.0,
+          "readability_score": 53.1,
+          "error": 21.9
+        }
+      ],
+      "feature_ranges": {
+        "tree_depth": {
+          "mean": 4.85,
+          "std": 2.286372673034735
+        },
+        "char_density": {
+          "mean": 6.348840270926184,
+          "std": 1.4865876194550514
+        },
+        "avg_syllables": {
+          "mean": 2.886650709541576,
+          "std": 0.6952512907619406
+        },
+        "pos_ratio": {
+          "mean": 0.6086522837066315,
+          "std": 0.10055189935819873
+        }
+      }
+    },
+    "kk": {
+      "n": 18,
+      "recommendation": "Strong alignment -- no tuning needed.",
+      "top_errors": [
+        {
+          "sentence_id": "kk_014",
+          "sentence_text": "Бұл мақалада жасанды интеллекттің заманауи дипломатиядағы рөлі мен оның халықаралық қатынастар жүйесіне әсері қарастырылады.",
+          "human_scaled": 62.5,
+          "readability_score": 33.0,
+          "error": 29.5
+        },
+        {
+          "sentence_id": "kk_015",
+          "sentence_text": "Жасанды интеллекттің деректерді өңдеу, алдын ала болжау, киберқауіпсіздік, коммуникация және шешім қабылдау процестерін қолдау сияқты негізгі бағыттары сипатталады.",
+          "human_scaled": 55.00000000000001,
+          "readability_score": 36.8,
+          "error": 18.20000000000001
+        },
+        {
+          "sentence_id": "kk_008",
+          "sentence_text": "Мен салатты шанышқымен жеймін.",
+          "human_scaled": 100.0,
+          "readability_score": 85.7,
+          "error": 14.299999999999997
+        }
+      ],
+      "feature_ranges": {
+        "tree_depth": {
+          "mean": 4.777777777777778,
+          "std": 1.8121673811444545
+        },
+        "char_density": {
+          "mean": 6.691506656426011,
+          "std": 1.1496597726779616
+        },
+        "avg_syllables": {
+          "mean": 2.857125433805541,
+          "std": 0.48812997520877194
+        },
+        "pos_ratio": {
+          "mean": 0.6547483380816714,
+          "std": 0.1541500948737493
+        }
+      }
+    }
+  }
+}
