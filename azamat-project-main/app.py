@@ -71,6 +71,7 @@ def clear_text() -> None:
     st.session_state.notice = None
     st.session_state.view = "Редактировать"
     st.session_state.rewrite_cache.clear()
+    gc.collect()
 
 
 def run_pending_action() -> None:
@@ -104,8 +105,8 @@ def run_pending_action() -> None:
         model = setting("GROQ_MODEL", DEFAULT_MODEL)
         bar = st.progress(0.0, text=f"Упрощаем выбранные предложения: {len(selected)}")
         try:
-            # No SDK retry loop or automatic switching to unrelated models.
-            with Groq(api_key=api_key, timeout=45.0, max_retries=0) as client:
+            # max_retries=5 позволяет автоматом переждать лимиты Groq (Rate Limits)
+            with Groq(api_key=api_key, timeout=60.0, max_retries=5) as client:
                 state.result = simplify(
                     state.analysis, state.threshold, GroqRewriter(client, model),
                     get_analyzer().score_rewrite, state.rewrite_cache, model,
@@ -115,14 +116,17 @@ def run_pending_action() -> None:
                 )
         finally:
             bar.empty()
+            gc.collect()
     except AnalysisError as exc:
         state.notice = ("warning", str(exc))
     except (ModuleNotFoundError, ImportError):
         state.notice = ("error", "Не найден модуль проекта или зависимость. Поместите app.py рядом с вашей папкой src и установите requirements-web.txt. Подробности — в README_RU.md.")
     except RuntimeError:
         state.notice = ("error", "Не удалось загрузить языковую модель. Проверьте spaCy/Stanza и скачайте модель выбранного языка по инструкции README_RU.md.")
-    except Exception:
-        state.notice = ("error", "Не удалось завершить обработку. Исходный текст сохранён. Проверьте установку модулей и настройки ИИ.")
+    except Exception as exc:
+        state.notice = ("error", f"Ошибка обработки: {str(exc)}. Если превышен лимит API Groq, подождите 1 минуту.")
+    finally:
+        gc.collect()
 
 
 def markup(value: str) -> None:
@@ -143,7 +147,7 @@ def render_sidebar() -> None:
         st.caption("Упростим предложения с оценкой ≤ X. Чем выше порог, тем больше предложений может измениться.")
         markup('<div class="side-section"><span>02 / ПРИМЕРЫ УРОВНЕЙ</span></div>')
         st.radio("Уровень примера", [0, 20, 40, 60, 80, 100], key="example_level",
-                 horizontal=True, label_visibility="collapsed")
+                  horizontal=True, label_visibility="collapsed")
         level, lang = st.session_state.example_level, st.session_state.language
         markup(f'<div class="example-card"><div class="example-label">{level} / 100 · {LEVEL_NAMES[level]}</div>'
                f'<p>{html.escape(EXAMPLES[lang][level])}</p></div>')
@@ -218,14 +222,11 @@ def main() -> None:
                '<h2>Исходный текст</h2></div><span class="panel-tag tag-original">ОРИГИНАЛ</span></div>')
         st.radio("Режим исходного текста", ["Редактировать", "Подсветка"],
                  key="view", horizontal=True, label_visibility="collapsed")
-        # Keep the same widget mounted on every rerun, so Streamlit cannot erase
-        # its value when the user switches between editing and highlighting.
         if state.view == "Редактировать":
             st.text_area("Исходный текст", key="source_text", height=390,
                          max_chars=MAX_TEXT_CHARS, label_visibility="collapsed",
                          placeholder="Вставьте текст на русском, английском или казахском…")
         else:
-            # The hidden input lives in an expander and remains mounted.
             with st.expander("Изменить исходный текст", expanded=False):
                 st.text_area("Исходный текст", key="source_text", height=200,
                              max_chars=MAX_TEXT_CHARS, label_visibility="collapsed")
