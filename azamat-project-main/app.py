@@ -281,23 +281,25 @@ def render_preview() -> None:
         '<main class="studio-preview">'
         '<header class="preview-topline">'
         '<span>READABLE.</span>'
-        '<span>ТЕКСТОВАЯ СТУДИЯ · RU / EN / KK</span>'
-        '<span>01 — 02</span>'
+        '<span>ART DIRECTION · TEXT STUDIO</span>'
+        '<span>01 / 02</span>'
         '</header>'
         '<section class="preview-stage">'
-        '<div class="preview-art" aria-hidden="true"><span></span></div>'
+        '<div class="preview-scene" aria-hidden="true">'
+        '<span class="scene-window"></span><span class="scene-sculpture"></span>'
+        '<span class="scene-plinth"></span></div>'
         '<div class="preview-copy">'
-        '<span class="preview-kicker">СЛОВА, КОТОРЫЕ ЛЕГКО НАЙТИ</span>'
-        '<h1>Сложное можно<br><em>сказать проще.</em></h1>'
+        '<span class="preview-kicker">STUDIO 01 &nbsp; / &nbsp; READABLE</span>'
+        '<h1>Сложное<br><em>сказать проще.</em></h1>'
         '<p>Инструмент для ясных текстов. Вставьте материал, выберите порог — '
         'и упростите только те фразы, которым это действительно нужно.</p>'
-        '<span class="preview-next">02&nbsp; / &nbsp;ВКЛАДКА «РЕДАКТОР»</span>'
+        '<a class="preview-next" href="#editor-start">SCROLL TO EDITOR <span>↓</span></a>'
         '</div>'
-        '<span class="preview-index">ЧИТАТЬ<br>ЗНАЧИТ<br>ПОНИМАТЬ</span>'
+        '<span class="preview-index">ЯСНОСТЬ<br>В КАЖДОМ<br>СЛОВЕ</span>'
         '</section>'
         '<footer class="preview-bottomline">'
         '<span>ЯСНОСТЬ НАЧИНАЕТСЯ С ТЕКСТА</span>'
-        '<span>АНАЛИЗ · УПРОЩЕНИЕ · РЕЗУЛЬТАТ</span>'
+        '<span>SCROLL TO EXPLORE &nbsp; ↓</span>'
         '</footer>'
         '</main>'
     )
@@ -308,12 +310,11 @@ def main() -> None:
     st.html('<style>' + (ASSETS / "style.css").read_text(encoding="utf-8") + '</style>')
     run_pending_action()
     render_sidebar()
-
-    preview_tab, editor_tab = st.tabs(["01 / Превью", "02 / Редактор"])
-    with preview_tab:
-        render_preview()
-    with editor_tab:
-        render_editor()
+    render_preview()
+    markup('<div class="editor-section-marker" id="editor-start">'
+           '<span>02 &nbsp; / &nbsp; THE EDITOR</span>'
+           '<span>ПРОСТРАНСТВО ДЛЯ ВАШЕГО ТЕКСТА</span></div>')
+    render_editor()
 
 
 if __name__ == "__main__":
