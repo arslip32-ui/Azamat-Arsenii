@@ -175,11 +175,7 @@ def render_summary(analysis, result) -> None:
     ) + '</div>')
 
 
-def main() -> None:
-    init_state()
-    st.html('<style>' + (ASSETS / "style.css").read_text(encoding="utf-8") + '</style>')
-    run_pending_action()
-    render_sidebar()
+def render_editor() -> None:
     markup('<header class="masthead"><span>РЕДАКТОР ЧИТАЕМОСТИ</span>'
            '<span>RU / EN / KK</span></header>'
            '<div class="intro"><h1>Сложное — <em>проще.</em></h1>'
@@ -278,6 +274,46 @@ def main() -> None:
                            "Если предложение разделено, «После» — минимальная оценка его новых частей.")
     markup('<footer class="page-footer"><strong>READABLE.</strong>'
            '<span>Читаемость — ориентир. Проверьте смысл новых формулировок.</span></footer>')
+
+
+def render_preview() -> None:
+    markup(
+        '<main class="studio-preview">'
+        '<header class="preview-topline">'
+        '<span>READABLE.</span>'
+        '<span>ТЕКСТОВАЯ СТУДИЯ · RU / EN / KK</span>'
+        '<span>01 — 02</span>'
+        '</header>'
+        '<section class="preview-stage">'
+        '<div class="preview-art" aria-hidden="true"><span></span></div>'
+        '<div class="preview-copy">'
+        '<span class="preview-kicker">СЛОВА, КОТОРЫЕ ЛЕГКО НАЙТИ</span>'
+        '<h1>Сложное можно<br><em>сказать проще.</em></h1>'
+        '<p>Инструмент для ясных текстов. Вставьте материал, выберите порог — '
+        'и упростите только те фразы, которым это действительно нужно.</p>'
+        '<span class="preview-next">02&nbsp; / &nbsp;ВКЛАДКА «РЕДАКТОР»</span>'
+        '</div>'
+        '<span class="preview-index">ЧИТАТЬ<br>ЗНАЧИТ<br>ПОНИМАТЬ</span>'
+        '</section>'
+        '<footer class="preview-bottomline">'
+        '<span>ЯСНОСТЬ НАЧИНАЕТСЯ С ТЕКСТА</span>'
+        '<span>АНАЛИЗ · УПРОЩЕНИЕ · РЕЗУЛЬТАТ</span>'
+        '</footer>'
+        '</main>'
+    )
+
+
+def main() -> None:
+    init_state()
+    st.html('<style>' + (ASSETS / "style.css").read_text(encoding="utf-8") + '</style>')
+    run_pending_action()
+    render_sidebar()
+
+    preview_tab, editor_tab = st.tabs(["01 / Превью", "02 / Редактор"])
+    with preview_tab:
+        render_preview()
+    with editor_tab:
+        render_editor()
 
 
 if __name__ == "__main__":
