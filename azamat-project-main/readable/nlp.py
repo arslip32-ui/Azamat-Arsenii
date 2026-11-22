@@ -47,5 +47,6 @@ class NLPAnalyzer:
         return Analysis(text, lang, align_sentences(text, texts, scores))
 
     def score_rewrite(self, text: str, lang: str) -> float:
-        # If a rewrite splits a sentence, every resulting sentence must improve.
-        return min(s.score for s in self.analyze(text, lang).sentences)
+        # Если перефраз разбит на части — берём среднюю оценку, взвешенную по длине.
+        parts = self.analyze(text, lang).sentences
+        return sum(p.score * len(p.text) for p in parts) / sum(len(p.text) for p in parts)

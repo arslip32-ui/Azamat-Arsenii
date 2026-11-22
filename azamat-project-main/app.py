@@ -1,7 +1,6 @@
 """Run from the existing project root: python -m streamlit run app.py"""
 from __future__ import annotations
 import gc
-import torch
 import html
 import os
 import statistics

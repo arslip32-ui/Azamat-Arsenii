@@ -14,7 +14,8 @@ LANGUAGES = {"ru": "Russian", "en": "English", "kk": "Kazakh"}
 MAX_TEXT_CHARS = 30_000
 MAX_BATCH_CHARS = 6_000
 MAX_BATCH_SENTENCES = 6
-PROMPT_VERSION = "selective-v1"
+PROMPT_VERSION = "selective-v2"
+MAX_ATTEMPTS = 3
 
 
 class AnalysisError(ValueError):
@@ -66,7 +67,7 @@ class Result:
 
 class Rewriter(Protocol):
     def rewrite(self, sentences: Sequence[SentenceScore], lang: str,
-                target: float) -> Mapping[int, str]: ...
+                target: float, strict: bool = False) -> Mapping[int, str]: ...
 
 
 def selected_sentences(analysis: Analysis, threshold: int) -> list[SentenceScore]:
@@ -144,6 +145,7 @@ def decode_response(content: str, expected_ids: set[int]) -> dict[int, str]:
 
 def protected_content(text: str) -> tuple[Counter, Counter, Counter]:
     """Conservative checks, NOT a claim of full semantic equivalence."""
+    text = text.replace("−", "-").replace("–", "-").replace("—", "-")
     numbers = Counter(re.findall(r"[+−-]?\d+(?:[.,]\d+)*%?", text))
     citations = Counter(re.findall(r"\[\d+(?:\s*[,;–-]\s*\d+)*\]", text))
     urls = Counter(re.findall(r"https?://[^\s<>\"']+", text))
@@ -199,51 +201,59 @@ def simplify(analysis: Analysis, threshold: int, rewriter: Rewriter,
     done = total - len(pending)
     if progress:
         progress(done, total)
-    batches = split_batches(pending)
-    for batch_index, batch in enumerate(batches):
-        try:
-            result.api_calls += 1
-            proposals = rewriter.rewrite(batch, analysis.lang, target)
-        except ProviderError as exc:
-            # Authentication/rate-limit/network error: stop, keep completed work.
-            for rest in batches[batch_index:]:
-                for s in rest:
-                    result.skipped[s.id] = str(exc)
-            if progress:
-                progress(total, total)
+    for attempt in range(MAX_ATTEMPTS):
+        if not pending:
             break
-        except (ValueError, TypeError, KeyError):
+        batches = split_batches(pending)
+        pending, stop = [], False
+        extra = {"strict": True} if attempt else {}
+        for batch_index, batch in enumerate(batches):
+            try:
+                result.api_calls += 1
+                proposals = rewriter.rewrite(batch, analysis.lang, target, **extra)
+            except ProviderError as exc:
+                # Ключ/лимит/сеть: останавливаемся, сделанное сохраняем.
+                for rest in batches[batch_index:]:
+                    for s in rest:
+                        result.skipped[s.id] = str(exc)
+                stop = True
+                break
+            except (ValueError, TypeError, KeyError):
+                for s in batch:
+                    result.skipped[s.id] = "Некорректный ответ модели; оригинал сохранён."
+                    pending.append(s)
+                continue
             for s in batch:
-                result.skipped[s.id] = "Некорректный ответ модели; оригинал сохранён."
-            done += len(batch)
-            if progress:
-                progress(done, total)
-            continue
-        for s in batch:
-            candidate = proposals.get(s.id, "")
-            reason = validate_candidate(s.text, candidate)
-            if reason is None:
-                try:
-                    candidate_score = float(score_text(candidate, analysis.lang))
-                    if not math.isfinite(candidate_score) or not 0 <= candidate_score <= 100:
-                        raise ValueError("Invalid score")
-                except Exception:
-                    reason = "Не удалось проверить читаемость нового предложения."
+                candidate = proposals.get(s.id, "")
+                reason = validate_candidate(s.text, candidate)
+                if reason is None:
+                    try:
+                        candidate_score = float(score_text(candidate, analysis.lang))
+                        if not math.isfinite(candidate_score) or not 0 <= candidate_score <= 100:
+                            raise ValueError("Invalid score")
+                    except Exception:
+                        reason = "Не удалось проверить читаемость нового предложения."
+                    else:
+                        if candidate_score <= s.score:
+                            reason = "По локальной оценке предложение не стало проще."
+                if reason:
+                    result.skipped[s.id] = reason
+                    pending.append(s)          # попробуем ещё раз (строже)
                 else:
-                    if candidate_score <= s.score:
-                        reason = "По локальной оценке предложение не стало проще."
-            if reason:
-                result.skipped[s.id] = reason
-            else:
-                rewrite = Rewrite(candidate, candidate_score, target, model)
-                result.changes[s.id] = rewrite
-                cache[(*prefix, s.id)] = rewrite
-                cache.move_to_end((*prefix, s.id))
-                while len(cache) > 512:
-                    cache.popitem(last=False)
-            done += 1
-            if progress:
-                progress(done, total)
+                    result.skipped.pop(s.id, None)
+                    rewrite = Rewrite(candidate, candidate_score, target, model)
+                    result.changes[s.id] = rewrite
+                    cache[(*prefix, s.id)] = rewrite
+                    cache.move_to_end((*prefix, s.id))
+                    while len(cache) > 512:
+                        cache.popitem(last=False)
+                    done += 1
+                if progress:
+                    progress(done, total)
+        if stop:
+            break
+    if progress:
+        progress(total, total)
     return result
 
 
