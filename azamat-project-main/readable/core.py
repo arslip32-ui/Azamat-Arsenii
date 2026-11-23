@@ -1,6 +1,8 @@
 """Pure editing logic. Nothing here depends on Streamlit or makes implicit API calls."""
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+
 import hashlib
 import html
 import json
@@ -15,7 +17,8 @@ MAX_TEXT_CHARS = 30_000
 MAX_BATCH_CHARS = 6_000
 MAX_BATCH_SENTENCES = 6
 PROMPT_VERSION = "selective-v2"
-MAX_ATTEMPTS = 3
+MAX_ATTEMPTS = 2
+MAX_PARALLEL_REQUESTS = 3   # одновременных запросов к Gemini (больше — риск лимита 429)
 
 
 class AnalysisError(ValueError):
@@ -207,22 +210,33 @@ def simplify(analysis: Analysis, threshold: int, rewriter: Rewriter,
         batches = split_batches(pending)
         pending, stop = [], False
         extra = {"strict": True} if attempt else {}
-        for batch_index, batch in enumerate(batches):
+        result.api_calls += len(batches)
+
+        def request(batch):
+            # Запрос к Gemini — это ожидание сети, поэтому батчи идут параллельно.
             try:
-                result.api_calls += 1
-                proposals = rewriter.rewrite(batch, analysis.lang, target, **extra)
+                return "ok", rewriter.rewrite(batch, analysis.lang, target, **extra)
             except ProviderError as exc:
-                # Ключ/лимит/сеть: останавливаемся, сделанное сохраняем.
-                for rest in batches[batch_index:]:
-                    for s in rest:
-                        result.skipped[s.id] = str(exc)
-                stop = True
-                break
+                return "provider", exc
             except (ValueError, TypeError, KeyError):
+                return "bad", None
+
+        with ThreadPoolExecutor(max_workers=min(MAX_PARALLEL_REQUESTS, len(batches))) as pool:
+            outcomes = list(pool.map(request, batches))
+
+        for batch, (kind, payload) in zip(batches, outcomes):
+            if kind == "provider":
+                # Ключ/лимит/сеть: этот батч пропускаем, повторных попыток не будет.
+                for s in batch:
+                    result.skipped[s.id] = str(payload)
+                stop = True
+                continue
+            if kind == "bad":
                 for s in batch:
                     result.skipped[s.id] = "Некорректный ответ модели; оригинал сохранён."
                     pending.append(s)
                 continue
+            proposals = payload
             for s in batch:
                 candidate = proposals.get(s.id, "")
                 reason = validate_candidate(s.text, candidate)
